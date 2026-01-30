@@ -1,0 +1,489 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://siteforge.dev/schemas/site-config.schema.json",
+  "title": "SiteForge Site Configuration",
+  "description": "JSON Schema for SiteForge site configuration files. Defines the complete structure of a site-config.json used to generate a static business website.",
+  "type": "object",
+  "required": ["name", "defaultLanguage", "theme", "navigation", "sections", "footer"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the business or website."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The canonical URL of the deployed website."
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "List of supported language codes (e.g. [\"fr\", \"en\", \"it\"])."
+    },
+    "defaultLanguage": {
+      "type": "string",
+      "description": "The default/fallback language code."
+    },
+    "theme": {
+      "$ref": "#/definitions/theme"
+    },
+    "seo": {
+      "$ref": "#/definitions/seo"
+    },
+    "navigation": {
+      "$ref": "#/definitions/navigation"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/section"
+      },
+      "description": "Ordered list of body sections to render."
+    },
+    "footer": {
+      "$ref": "#/definitions/footer"
+    },
+    "pipeline": {
+      "$ref": "#/definitions/pipeline"
+    }
+  },
+
+  "definitions": {
+    "localizedText": {
+      "description": "A user-facing text value. Either a plain string (single-language) or an object keyed by language code (multi-language).",
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "minProperties": 1
+        }
+      ]
+    },
+
+    "theme": {
+      "type": "object",
+      "description": "Theme configuration controlling colors, fonts, border radius, and shadows.",
+      "required": ["colors", "fonts"],
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "type": "object",
+          "description": "Color tokens in HSL value format (e.g. \"45 80% 52%\").",
+          "required": ["primary", "background", "foreground"],
+          "properties": {
+            "primary": { "type": "string" },
+            "primary-foreground": { "type": "string" },
+            "secondary": { "type": "string" },
+            "secondary-foreground": { "type": "string" },
+            "accent": { "type": "string" },
+            "accent-foreground": { "type": "string" },
+            "background": { "type": "string" },
+            "foreground": { "type": "string" },
+            "card": { "type": "string" },
+            "card-foreground": { "type": "string" },
+            "popover": { "type": "string" },
+            "popover-foreground": { "type": "string" },
+            "muted": { "type": "string" },
+            "muted-foreground": { "type": "string" },
+            "border": { "type": "string" },
+            "input": { "type": "string" },
+            "ring": { "type": "string" },
+            "destructive": { "type": "string" },
+            "destructive-foreground": { "type": "string" },
+            "custom": {
+              "type": "object",
+              "description": "Project-specific named colors (e.g. \"stone-warm\", \"burgundy\").",
+              "additionalProperties": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "fonts": {
+          "type": "object",
+          "description": "Font configuration with heading and body slots.",
+          "required": ["heading", "body"],
+          "additionalProperties": false,
+          "properties": {
+            "heading": { "$ref": "#/definitions/fontConfig" },
+            "body": { "$ref": "#/definitions/fontConfig" }
+          }
+        },
+        "borderRadius": {
+          "type": "string",
+          "description": "Default border radius (e.g. \"0.5rem\")."
+        },
+        "shadows": {
+          "type": "object",
+          "description": "Named shadow values (e.g. \"soft\", \"elevated\").",
+          "additionalProperties": { "type": "string" }
+        },
+        "gradients": {
+          "type": "object",
+          "description": "Named CSS gradient values.",
+          "additionalProperties": { "type": "string" }
+        },
+        "buttonStyle": {
+          "type": "object",
+          "description": "Button styling configuration.",
+          "additionalProperties": false,
+          "properties": {
+            "borderRadius": {
+              "type": "string",
+              "enum": ["none", "sm", "md", "lg", "full"],
+              "description": "Button border radius style."
+            }
+          }
+        }
+      }
+    },
+
+    "fontConfig": {
+      "type": "object",
+      "description": "A font slot configuration.",
+      "required": ["family", "weights"],
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "type": "string",
+          "description": "Google Fonts family name (e.g. \"Cormorant Garamond\")."
+        },
+        "weights": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 900
+          },
+          "minItems": 1,
+          "description": "Font weights to load (e.g. [300, 400, 600, 700])."
+        },
+        "fallback": {
+          "type": "string",
+          "description": "CSS fallback font stack (e.g. \"serif\")."
+        }
+      }
+    },
+
+    "seo": {
+      "type": "object",
+      "description": "SEO and metadata configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Page title for search engines."
+        },
+        "description": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Meta description for search engines."
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "SEO keywords."
+        },
+        "ogImage": {
+          "type": "string",
+          "description": "Path or URL to the Open Graph image."
+        },
+        "canonical": {
+          "type": "string",
+          "format": "uri",
+          "description": "Canonical URL for the page."
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale string (e.g. \"fr_CH\")."
+        },
+        "structuredData": {
+          "type": "object",
+          "description": "JSON-LD structured data (e.g. LocalBusiness schema).",
+          "additionalProperties": true
+        },
+        "favicon": {
+          "type": "string",
+          "description": "Path or URL to the favicon image."
+        },
+        "appleTouchIcon": {
+          "type": "string",
+          "description": "Path or URL to the Apple touch icon."
+        }
+      }
+    },
+
+    "navigation": {
+      "type": "object",
+      "description": "Top navigation bar configuration.",
+      "required": ["links"],
+      "additionalProperties": false,
+      "properties": {
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/navLink" },
+          "description": "Navigation menu links."
+        },
+        "showLanguageSwitcher": {
+          "type": "boolean",
+          "description": "Whether to show the language switcher in the header.",
+          "default": false
+        },
+        "logo": {
+          "type": "string",
+          "description": "Path or URL to a logo image."
+        },
+        "logoDark": {
+          "type": "string",
+          "description": "Path or URL to a dark variant of the logo (used when header has background)."
+        },
+        "logoText": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Text displayed as the logo/brand name."
+        },
+        "logoSubtext": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Subtitle text displayed below the logo text."
+        },
+        "logoSubtextColor": {
+          "type": "string",
+          "description": "Custom HSL color for the logo subtext."
+        },
+        "headerStyle": {
+          "type": "object",
+          "description": "Header styling configuration.",
+          "additionalProperties": false,
+          "properties": {
+            "textColorAtTop": {
+              "type": "string",
+              "enum": ["light", "dark", "auto"],
+              "description": "Text color when header is transparent at page top."
+            },
+            "alwaysShowBackground": {
+              "type": "boolean",
+              "description": "Whether to always show the header background."
+            }
+          }
+        },
+        "ctaButton": {
+          "type": "object",
+          "description": "Optional call-to-action button in the navigation bar.",
+          "required": ["label"],
+          "additionalProperties": false,
+          "properties": {
+            "label": { "$ref": "#/definitions/localizedText" },
+            "anchor": { "type": "string" },
+            "href": { "type": "string" },
+            "phone": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "navLink": {
+      "type": "object",
+      "description": "A navigation link.",
+      "required": ["label", "anchor"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Display text for the link."
+        },
+        "anchor": {
+          "type": "string",
+          "description": "Target section ID to scroll to."
+        }
+      }
+    },
+
+    "section": {
+      "type": "object",
+      "description": "A content section rendered in the page body.",
+      "required": ["type", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "hero",
+            "services",
+            "gallery",
+            "about",
+            "contact",
+            "hours",
+            "featured",
+            "testimonials",
+            "cta-banner",
+            "text-block",
+            "map"
+          ],
+          "description": "The section component type to render."
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique section identifier, used as the HTML id attribute and anchor target."
+        },
+        "props": {
+          "type": "object",
+          "description": "Section-specific properties passed to the component.",
+          "additionalProperties": true
+        }
+      }
+    },
+
+    "socialLink": {
+      "type": "object",
+      "description": "A social media link.",
+      "required": ["platform", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "Social platform name (e.g. \"instagram\", \"facebook\", \"linkedin\")."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to the social media profile."
+        },
+        "label": {
+          "type": "string",
+          "description": "Accessible label for the link."
+        }
+      }
+    },
+
+    "ctaButton": {
+      "type": "object",
+      "description": "A call-to-action button.",
+      "required": ["label"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "$ref": "#/definitions/localizedText" },
+        "anchor": {
+          "type": "string",
+          "description": "Section ID to scroll to."
+        },
+        "href": {
+          "type": "string",
+          "description": "External URL to link to."
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "outline", "gold", "secondary"],
+          "description": "Button visual variant.",
+          "default": "primary"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Lucide icon name to display in the button."
+        },
+        "iconPosition": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "description": "Position of the icon in the button.",
+          "default": "left"
+        }
+      }
+    },
+
+    "footer": {
+      "type": "object",
+      "description": "Footer configuration.",
+      "required": ["copyright"],
+      "additionalProperties": false,
+      "properties": {
+        "copyright": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Copyright notice text."
+        },
+        "description": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Short description shown in the footer."
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/navLink" },
+          "description": "Footer navigation links."
+        },
+        "socialLinks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/socialLink" },
+          "description": "Social media links displayed in the footer."
+        },
+        "columns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/footerColumn" },
+          "description": "Multi-column footer layout."
+        },
+        "bottomText": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Additional text displayed at the bottom of the footer."
+        },
+        "logo": {
+          "type": "string",
+          "description": "Path or URL to a logo image for the footer."
+        },
+        "layout": {
+          "type": "string",
+          "enum": ["full", "compact", "minimal"],
+          "description": "Footer layout style.",
+          "default": "full"
+        },
+        "showNavigation": {
+          "type": "boolean",
+          "description": "Whether to show navigation links in the footer.",
+          "default": true
+        }
+      }
+    },
+
+    "footerColumn": {
+      "type": "object",
+      "description": "A column in a multi-column footer layout.",
+      "required": ["title", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/localizedText",
+          "description": "Column heading."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "$ref": "#/definitions/localizedText",
+                "description": "Item display text."
+              },
+              "href": {
+                "type": "string",
+                "description": "Optional link URL."
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "pipeline": {
+      "type": "object",
+      "description": "Pre-build pipeline configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ordered list of pipeline steps to execute (e.g. \"validate-config\", \"download-assets\", \"custom:./scripts/my-step.sh\")."
+        }
+      }
+    }
+  }
+}

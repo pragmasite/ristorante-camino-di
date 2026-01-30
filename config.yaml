@@ -1,0 +1,365 @@
+name: "Ristorante Camino"
+url: "https://ristorante-camino-di.ch"
+languages: ["it", "en"]
+defaultLanguage: "it"
+
+theme:
+  colors:
+    primary: "15 25% 20%"
+    primary-foreground: "45 20% 95%"
+    secondary: "30 15% 95%"
+    secondary-foreground: "15 25% 20%"
+    accent: "15 70% 45%"
+    accent-foreground: "45 20% 98%"
+    background: "45 20% 98%"
+    foreground: "15 25% 15%"
+    muted: "30 10% 90%"
+    muted-foreground: "15 15% 45%"
+    card: "0 0% 100%"
+    card-foreground: "15 25% 15%"
+    border: "30 15% 88%"
+    custom:
+      wine: "0 60% 35%"
+      terracotta: "15 55% 50%"
+  fonts:
+    heading:
+      family: "Cormorant Garamond"
+      weights: [400, 500, 600]
+      fallback: "serif"
+    body:
+      family: "Source Sans 3"
+      weights: [300, 400, 500, 600]
+      fallback: "sans-serif"
+  borderRadius: "0.25rem"
+  buttonStyle:
+    borderRadius: "sm"
+
+seo:
+  title:
+    it: "Ristorante Camino | Cucina Locale a Ruvigliana"
+    en: "Ristorante Camino | Local Cuisine in Ruvigliana"
+  description:
+    it: "Ristorante Camino a Ruvigliana - Passione e territorialità, dai prodotti locali alle cantine artigianali. Cucina tradizionale con un tocco innovativo."
+    en: "Ristorante Camino in Ruvigliana - Passion and local tradition, from local products to artisan wineries. Traditional cuisine with an innovative touch."
+  keywords:
+    - "ristorante"
+    - "ruvigliana"
+    - "lugano"
+    - "cucina locale"
+    - "ticino"
+    - "prodotti locali"
+  locale: "it_CH"
+
+disclaimer:
+  enabled: true
+  title:
+    it: "Anteprima Bozza"
+    en: "Draft Preview"
+  message:
+    it: "Questo sito web è un'anteprima bozza."
+    en: "This website is a draft preview."
+  bulletPoints:
+    - it: "Non è indicizzato su Google"
+      en: "It is not referenced on Google"
+    - it: "Potrebbe contenere errori o imprecisioni"
+      en: "It may contain errors or inaccuracies"
+  buttonLabel:
+    it: "Ho capito"
+    en: "I understand"
+
+navigation:
+  links:
+    - label:
+        it: "Home"
+        en: "Home"
+      anchor: "hero"
+    - label:
+        it: "Chi Siamo"
+        en: "About"
+      anchor: "about"
+    - label:
+        it: "Galleria"
+        en: "Gallery"
+      anchor: "gallery"
+    - label:
+        it: "Orari"
+        en: "Hours"
+      anchor: "hours"
+    - label:
+        it: "Contatti"
+        en: "Contact"
+      anchor: "contact"
+  showLanguageSwitcher: true
+  logo: "assets/logo.png"
+  logoText:
+    it: "Camino"
+    en: "Camino"
+  logoSubtext:
+    it: "Ristorante con alloggio"
+    en: "Restaurant with accommodation"
+  headerStyle:
+    textColorAtTop: "light"
+  ctaButton:
+    label:
+      it: "Prenota"
+      en: "Reserve"
+    phone: "+41912110150"
+    icon: "Phone"
+
+sections:
+  - type: "hero"
+    id: "hero"
+    props:
+      backgroundImage: "assets/image-08.jpg"
+      backgroundBlur: "sm"
+      title:
+        it: "Passione e Territorialità"
+        en: "Passion and Local Tradition"
+      subtitle:
+        it: "Dai produttori locali alle cantine artigianali, dalla passione alla tavola"
+        en: "From local producers to artisan wineries, from passion to your table"
+      badge:
+        it: "Ruvigliana, Ticino"
+        en: "Ruvigliana, Ticino"
+      cta:
+        - label:
+            it: "Scopri il Menu"
+            en: "Discover the Menu"
+          anchor: "gallery"
+          variant: "gold"
+        - label:
+            it: "Contattaci"
+            en: "Contact Us"
+          anchor: "contact"
+          variant: "outline"
+      scrollIndicator: true
+      scrollTarget: "about"
+
+  - type: "about"
+    id: "about"
+    props:
+      label:
+        it: "La Nostra Filosofia"
+        en: "Our Philosophy"
+      title:
+        it: "Artigianato e Tradizione"
+        en: "Craftsmanship and Tradition"
+      content:
+        - it: "La nostra filosofia è promuovere i prodotti locali, privilegiando la produzione artigianale e le preparazioni fatte in casa. Selezioniamo con cura gli ingredienti per i nostri piatti, acquistandoli direttamente dal produttore ogni volta che è possibile: storie di alpeggi, produttori locali e passione per i loro prodotti."
+          en: "Our philosophy is to promote local products, favoring artisanal production and homemade preparations. We carefully select the ingredients for our dishes, sourcing them directly from the producer whenever possible: stories of mountain pastures, local producers, and passion for their products."
+        - it: "Per noi de Il Camino, l'artigianato è una parte fondamentale per mantenere la tradizione e la cultura locale. Per aggiungere la nostra personalità, ci impegniamo ogni singolo giorno per preparare i migliori piatti con i prodotti più freschi possibili, rispettando le loro caratteristiche e utilizzando tecniche culinarie moderne per dare loro il nostro tocco innovativo."
+          en: "For us at Il Camino, craftsmanship is a fundamental part of maintaining local tradition and culture. To add our own personality, we strive every single day to prepare the best dishes with the freshest products possible, respecting their characteristics and using modern culinary techniques to give them our innovative twist."
+      image: "assets/image-05.jpg"
+      imagePosition: "right"
+      highlights:
+        - text:
+            it: "Prodotti locali"
+            en: "Local products"
+        - text:
+            it: "Preparazioni artigianali"
+            en: "Artisanal preparations"
+        - text:
+            it: "Cucina innovativa"
+            en: "Innovative cuisine"
+      floatingCard:
+        icon: "Heart"
+        label:
+          it: "La Nostra Promessa"
+          en: "Our Promise"
+        text:
+          it: "Ogni piatto racconta una storia del territorio"
+          en: "Every dish tells a story of the land"
+
+  - type: "gallery"
+    id: "gallery"
+    props:
+      label:
+        it: "I Nostri Piatti"
+        en: "Our Dishes"
+      title:
+        it: "Sapori del Territorio"
+        en: "Flavors of the Land"
+      subtitle:
+        it: "Una selezione dei nostri piatti preparati con ingredienti freschi e locali"
+        en: "A selection of our dishes prepared with fresh, local ingredients"
+      columns: 3
+      aspectRatio: "4:3"
+      maxInitialItems: 6
+      items:
+        - src: "assets/image-08.jpg"
+          alt:
+            it: "Tagliere di salumi e formaggi locali"
+            en: "Local cured meats and cheese board"
+          title:
+            it: "Tagliere Ticinese"
+            en: "Ticino Board"
+        - src: "assets/image-04.jpg"
+          alt:
+            it: "Tataki di tonno con semi di sesamo e purea di avocado"
+            en: "Tuna tataki with sesame seeds and avocado puree"
+          title:
+            it: "Tataki di Tonno"
+            en: "Tuna Tataki"
+        - src: "assets/image-07.jpg"
+          alt:
+            it: "Petto d'anatra con purea di patate dolci"
+            en: "Duck breast with sweet potato puree"
+          title:
+            it: "Petto d'Anatra"
+            en: "Duck Breast"
+        - src: "assets/image-01.jpg"
+          alt:
+            it: "Tortellini in crema con pangrattato"
+            en: "Tortellini in cream sauce with breadcrumbs"
+          title:
+            it: "Tortellini alla Crema"
+            en: "Cream Tortellini"
+        - src: "assets/image-06.jpg"
+          alt:
+            it: "Melanzane alla parmigiana con basilico e pomodorini"
+            en: "Eggplant parmigiana with basil and cherry tomatoes"
+          title:
+            it: "Melanzane alla Parmigiana"
+            en: "Eggplant Parmigiana"
+        - src: "assets/image-02.jpg"
+          alt:
+            it: "Tartare di salmone con verdure fresche"
+            en: "Salmon tartare with fresh vegetables"
+          title:
+            it: "Tartare di Salmone"
+            en: "Salmon Tartare"
+        - src: "assets/image-03.jpg"
+          alt:
+            it: "Paté con toast e cavolo rosso"
+            en: "Pate with toast and red cabbage"
+          title:
+            it: "Paté della Casa"
+            en: "House Pate"
+        - src: "assets/image-05.jpg"
+          alt:
+            it: "Pasta viola con olive e salsa al vino"
+            en: "Purple pasta with olives and wine sauce"
+          title:
+            it: "Tagliatelle al Vino"
+            en: "Wine Tagliatelle"
+        - src: "assets/image-09.jpg"
+          alt:
+            it: "Filetto di pesce con pinoli"
+            en: "Fish fillet with pine nuts"
+          title:
+            it: "Filetto di Pesce"
+            en: "Fish Fillet"
+        - src: "assets/image-10.jpg"
+          alt:
+            it: "Bistecca con salsa e cavolini di Bruxelles"
+            en: "Steak with gravy and brussels sprouts"
+          title:
+            it: "Bistecca del Camino"
+            en: "Camino Steak"
+
+  - type: "hours"
+    id: "hours"
+    props:
+      label:
+        it: "Orari di Apertura"
+        en: "Opening Hours"
+      title:
+        it: "Quando Trovarci"
+        en: "When to Find Us"
+      subtitle:
+        it: "Vi aspettiamo per un'esperienza culinaria indimenticabile"
+        en: "We await you for an unforgettable culinary experience"
+      timezone: "Europe/Zurich"
+      showTodayBadge: true
+      showOpenClosedBadge: true
+      schedule:
+        - day:
+            it: "Lunedì"
+            en: "Monday"
+          continuous: "17:00 - 23:00"
+        - day:
+            it: "Martedì"
+            en: "Tuesday"
+          closed: true
+        - day:
+            it: "Mercoledì"
+            en: "Wednesday"
+          continuous: "17:00 - 23:00"
+        - day:
+            it: "Giovedì"
+            en: "Thursday"
+          continuous: "17:00 - 23:00"
+        - day:
+            it: "Venerdì"
+            en: "Friday"
+          continuous: "17:00 - 23:00"
+        - day:
+            it: "Sabato"
+            en: "Saturday"
+          morning: "11:00 - 14:30"
+          afternoon: "17:00 - 23:00"
+        - day:
+            it: "Domenica"
+            en: "Sunday"
+          morning: "11:00 - 14:30"
+          afternoon: "17:00 - 23:00"
+      ctaButton:
+        label:
+          it: "Chiama per Prenotare"
+          en: "Call to Reserve"
+        phone: "+41912110150"
+        icon: "Phone"
+      uiStrings:
+        today:
+          it: "Oggi"
+          en: "Today"
+        closed:
+          it: "Chiuso"
+          en: "Closed"
+        open:
+          it: "Aperto"
+          en: "Open"
+
+  - type: "contact"
+    id: "contact"
+    props:
+      label:
+        it: "Contatti"
+        en: "Contact"
+      title:
+        it: "Vieni a Trovarci"
+        en: "Come Visit Us"
+      subtitle:
+        it: "Siamo a Ruvigliana, con una vista mozzafiato sul Lago di Lugano"
+        en: "We are in Ruvigliana, with a breathtaking view of Lake Lugano"
+      phone: "+41 91 211 01 50"
+      email: "info@rist-camino.ch"
+      address:
+        street: "Via Massago 3"
+        city: "Ruvigliana"
+        postalCode: "6977"
+        country: "Svizzera"
+        mapsUrl: "https://www.google.com/maps/search/?api=1&query=46.004006,8.977973"
+      socialLinks:
+        - platform: "facebook"
+          url: "https://www.facebook.com/caminoruvigliana"
+          label: "@caminoruvigliana"
+        - platform: "instagram"
+          url: "https://www.instagram.com/camino_ruvigliana"
+          label: "@camino_ruvigliana"
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2770.5!2d8.977973!3d46.004006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDAwJzE0LjQiTiA4wrA1OCczOS4xIkU!5e0!3m2!1sit!2sch!4v1234567890"
+
+footer:
+  copyright:
+    it: "Ristorante Camino di Dawodi. Tutti i diritti riservati."
+    en: "Ristorante Camino di Dawodi. All rights reserved."
+  description:
+    it: "Passione e territorialità, dalla selezione delle materie prime locali alla scelta delle cantine artigianali."
+    en: "Passion and local tradition, from selecting local raw materials to choosing artisan wineries."
+  socialLinks:
+    - platform: "facebook"
+      url: "https://www.facebook.com/caminoruvigliana"
+    - platform: "instagram"
+      url: "https://www.instagram.com/camino_ruvigliana"
+  layout: "compact"
+  showNavigation: true
