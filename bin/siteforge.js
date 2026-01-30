@@ -297,12 +297,6 @@ const PIPELINE_STEPS = [
     required: true,
   },
   {
-    name: "download-assets",
-    label: "Download remote assets",
-    file: "download-assets.js",
-    required: false,
-  },
-  {
     name: "optimize-images",
     label: "Optimize images",
     file: "optimize-images.js",
