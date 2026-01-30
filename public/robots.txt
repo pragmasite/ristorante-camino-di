@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ristorante-camino-di.pragmasite.com/sitemap.xml
